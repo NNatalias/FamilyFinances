@@ -1,0 +1,9 @@
+*{
+  background-color: #404F43;
+  color: #E1E8E6;
+  font-size: 36px;
+  font-family: 'Tenor Sans', sans-serif;
+}
+mat-grid-tile{
+  margin: 1rem;
+}

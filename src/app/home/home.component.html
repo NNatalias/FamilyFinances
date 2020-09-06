@@ -1,0 +1,47 @@
+<div class="container">
+<form class="createNewPurchase" [formGroup]="form" (ngSubmit)="submit()">
+  <div>
+    <mat-form-field>
+      <mat-label >Категория товара</mat-label>
+      <mat-select id="currentCategory" formControlName="currentCategory" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{category.value}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Выберете категорию товара</mat-error>
+    </mat-form-field>
+  </div>
+<!--  <div>-->
+<!--    <mat-form-field >-->
+<!--      <mat-label for="nameItem">Товар</mat-label>-->
+<!--      <input id="nameItem" formControlName="nameItem" matInput type="text">-->
+<!--      <mat-icon matSuffix>fastfood</mat-icon>-->
+<!--      <mat-hint>Название товара либо услуги</mat-hint>-->
+<!--      <mat-error>-->
+<!--       Это поле должно быть заполнено-->
+<!--      </mat-error>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+  <div>
+  <mat-form-field >
+    <mat-label for="nameShop">Магазин</mat-label>
+    <input matInput id="nameShop" formControlName="nameShop" type="text" placeholder="Где была совершена покупка?">
+    <mat-icon matSuffix>shopping_cart</mat-icon>
+    <mat-hint>Название магазина</mat-hint>
+  </mat-form-field>
+  </div>
+    <div>
+  <mat-form-field >
+    <mat-label for="sumItem">Сумма</mat-label>
+    <input id="sumItem" class="numInput" formControlName="sumItem" matInput type="number" placeholder="Сколько Вы потратили?">
+    <mat-hint>Цена за товар</mat-hint>
+    <mat-error>
+      Это поле должно быть заполнено
+    </mat-error>
+    <span matSuffix>грн</span>
+  </mat-form-field>
+    </div>
+  <button mat-raised-button class="btn" [disabled]="form.invalid" type="submit">Добавить</button>
+</form>
+</div>

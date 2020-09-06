@@ -1,0 +1,24 @@
+.container{
+  color: #3B3632;
+}
+.createNewPurchase{
+  margin: 3rem;
+
+  width: 40%;
+}
+.ChekMargin {
+  margin: 0 6px;
+}
+.btn{
+  background-color: #3B3632;
+  margin-top: 1rem;
+  color: #E1E8E6;
+}
+input.numInput::-webkit-outer-spin-button,
+input.numInput::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.numInput {
+  -moz-appearance: textfield;
+}
