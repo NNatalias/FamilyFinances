@@ -1,28 +1,37 @@
 <div class="container">
+  <div class="title">Добавить новую запись<br>о трате средств</div>
 <form class="createNewPurchase" [formGroup]="form" (ngSubmit)="submit()">
   <div>
+    <div>
+      <mat-form-field >
+      <mat-label>Новая категория</mat-label>
+      <input matInput id="newCategory" formControlName="newCategory" type="text" placeholder="Укажите название новой категории">
+      <mat-icon matSuffix>add</mat-icon>
+    </mat-form-field>
+      <br>
+      <button [disabled]="!form.get('newCategory').value" mat-raised-button class="btn" style="margin-top: 0; background-color: #9eb79e;" (click)="addNewCategory()" type="button">Добавить новую категорию</button>
+    </div>
     <mat-form-field>
-      <mat-label >Категория товара</mat-label>
+      <mat-label >Категория</mat-label>
       <mat-select id="currentCategory" formControlName="currentCategory" required>
-        <mat-option>--</mat-option>
         <mat-option *ngFor="let category of categories" [value]="category">
           {{category.value}}
         </mat-option>
       </mat-select>
-      <mat-error>Выберете категорию товара</mat-error>
+      <mat-error>Выберете категорию</mat-error>
     </mat-form-field>
   </div>
-<!--  <div>-->
-<!--    <mat-form-field >-->
-<!--      <mat-label for="nameItem">Товар</mat-label>-->
-<!--      <input id="nameItem" formControlName="nameItem" matInput type="text">-->
-<!--      <mat-icon matSuffix>fastfood</mat-icon>-->
-<!--      <mat-hint>Название товара либо услуги</mat-hint>-->
-<!--      <mat-error>-->
-<!--       Это поле должно быть заполнено-->
-<!--      </mat-error>-->
-<!--    </mat-form-field>-->
-<!--  </div>-->
+  <div formGroupName="newProducts">
+      <button mat-stroked-button style="color: #404F43;margin: 1% 1% 1% 0;" (click)="addProduct()" type="button">Добавить товар</button>
+        <br>
+        <mat-form-field *ngFor="let control of form.get('newProducts').value; let idx = index">
+        <mat-label>Товар {{idx + 1}}</mat-label>
+        <input matInput type="text" [formControlName]="idx">
+          <mat-icon matSuffix>fastfood</mat-icon>
+          <mat-hint>Наименование товара</mat-hint>
+          <mat-error>Это поле не может быть пустым</mat-error>
+        </mat-form-field>
+  </div>
   <div>
   <mat-form-field >
     <mat-label for="nameShop">Магазин</mat-label>

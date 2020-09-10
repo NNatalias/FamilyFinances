@@ -1,18 +1,25 @@
 .container{
   color: #3B3632;
+  background-color: #f4fcfa;
+  border-radius: 20px;
+  border: #3B3632 solid;
+  width: 30%;
+  margin: 2rem;
+}
+
+.title{
+  font-size: 27px;
+  font-family: 'Tenor Sans', sans-serif;
+  padding: 1rem 0 0 3rem;
 }
 .createNewPurchase{
-  margin: 3rem;
-
-  width: 40%;
-}
-.ChekMargin {
-  margin: 0 6px;
+  padding: 1rem 0 1rem 3rem ;
+  width: 100%;
 }
 .btn{
   background-color: #3B3632;
-  margin-top: 1rem;
-  color: #E1E8E6;
+  margin: 3% 0;
+  color: white;
 }
 input.numInput::-webkit-outer-spin-button,
 input.numInput::-webkit-inner-spin-button {
@@ -21,4 +28,7 @@ input.numInput::-webkit-inner-spin-button {
 
 input.numInput {
   -moz-appearance: textfield;
+}
+mat-form-field{
+  width: 70%;
 }

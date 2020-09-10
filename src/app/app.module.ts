@@ -17,6 +17,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { MenuComponent } from './menu/menu.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import {MatCardModule} from '@angular/material/card';
         MatButtonModule,
         MatSelectModule,
         MatGridListModule,
-        MatCardModule
+        MatCardModule,
+      MatSnackBarModule
     ],
   providers: [],
   bootstrap: [AppComponent]
