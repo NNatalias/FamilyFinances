@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      nameShop: new FormControl(null, Validators.max(15)),
+      nameShop: new FormControl(null, Validators.max(20)),
       sumItem: new FormControl(null, Validators.required),
       newCategory: new FormControl(null, Validators.max(20)),
       currentCategory: new FormControl('', Validators.required),

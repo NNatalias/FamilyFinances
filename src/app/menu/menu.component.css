@@ -1,9 +1,12 @@
 *{
   background-color: #404F43;
   color: #E1E8E6;
-  font-size: 36px;
+  font-size: xx-large;
   font-family: 'Tenor Sans', sans-serif;
 }
-mat-grid-tile{
-  margin: 1rem;
+a{
+  text-decoration: none;
+}
+a:hover{
+  color: #9eb79e;
 }

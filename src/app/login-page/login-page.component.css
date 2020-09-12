@@ -1,3 +1,11 @@
+.bigTitle{
+  background-color: #404F43;
+  color: #E1E8E6;
+  font-size: xx-large;
+  font-family: 'Tenor Sans', sans-serif;
+  height: 30px;
+  padding: 1%;
+}
 .container{
   color: #3B3632;
   background-color: #f4fcfa;
@@ -11,23 +19,16 @@
   font-family: 'Tenor Sans', sans-serif;
   padding: 1rem 0 0 3rem;
 }
-.createNewPurchase{
-  padding: 1rem 0 1rem 3rem ;
+.loginForm{
+  padding: 1rem 0 1rem 4rem ;
   width: 100%;
 }
 .btn{
   background-color: #3B3632;
-  margin: 3% 0;
   color: white;
-}
-input.numInput::-webkit-outer-spin-button,
-input.numInput::-webkit-inner-spin-button {
-  display: none;
-}
-
-input.numInput {
-  -moz-appearance: textfield;
+  margin: 3% 0;
 }
 mat-form-field{
   width: 70%;
 }
+

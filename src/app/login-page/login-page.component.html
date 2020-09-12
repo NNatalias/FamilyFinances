@@ -1,0 +1,25 @@
+<div class="bigTitle">Семейные Финансы</div>
+<div class="container">
+  <div class="title">Войти</div>
+<form class="loginForm" [formGroup]="loginForm" (ngSubmit)="submit()">
+  <div>
+    <mat-form-field>
+      <mat-label>E-mail</mat-label>
+      <input matInput id="email" formControlName="email" type="email" placeholder="Укажите cвой E-mail">
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-error>Укажите cвой E-mail</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Пароль</mat-label>
+      <input matInput id="password" formControlName="password" [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide">
+        <mat-icon style="font-size: x-large;">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error>Укажите cвой пароль</mat-error>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button class="btn" [disabled]="loginForm.invalid" type="submit">Войти</button>
+</form>
+</div>

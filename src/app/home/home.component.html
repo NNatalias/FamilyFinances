@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <div class="container">
   <div class="title">Добавить новую запись<br>о трате средств</div>
 <form class="createNewPurchase" [formGroup]="form" (ngSubmit)="submit()">
@@ -18,6 +19,7 @@
           {{category.value}}
         </mat-option>
       </mat-select>
+      <mat-hint align="end">Укажите категорию вашей покупки</mat-hint>
       <mat-error>Выберете категорию</mat-error>
     </mat-form-field>
   </div>
