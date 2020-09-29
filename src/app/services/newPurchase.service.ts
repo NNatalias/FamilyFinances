@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Registration} from '../Interfaces/registration';
+import {RegistrationNewBuy} from '../Interfaces/registrationNewBuy';
 
 @Injectable({providedIn: 'root'})
 export class NewPurchaseService {
   constructor(private http: HttpClient) {}
 
-  create(newRegistration: Registration): Observable<Registration>{
-    return this.http.post<Registration>('', newRegistration);
+  create(newRegistration: RegistrationNewBuy): Observable<RegistrationNewBuy>{
+    return this.http.post<RegistrationNewBuy>('', newRegistration);
   }
 
 }

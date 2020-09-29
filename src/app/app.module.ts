@@ -19,12 +19,16 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { RegistrationPageComponent } from './registration-page/registration-page.component';
+import { AuthPageComponent } from './auth-page/auth-page.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     MenuComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    RegistrationPageComponent,
+    AuthPageComponent
   ],
     imports: [
         BrowserModule,

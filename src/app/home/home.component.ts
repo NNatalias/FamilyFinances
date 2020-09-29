@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Registration} from '../Interfaces/registration';
+import {RegistrationNewBuy} from '../Interfaces/registrationNewBuy';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Category} from '../Interfaces/category';
 import {NewPurchaseService} from '../services/newPurchase.service';
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     if ( this.form.invalid){
       return;
     }
-    const registration: Registration =
+    const registration: RegistrationNewBuy =
      {
        nameOfShop: this.form.value.nameShop,
        sum: this.form.value.sumItem,

@@ -10,7 +10,7 @@
   font-family: 'Tenor Sans', sans-serif;
   padding: 3%;
 }
-.loginForm{
+.registrationForm{
   padding:0 2rem 1rem 2rem ;
   width: 100%;
 }
@@ -22,4 +22,3 @@
 mat-form-field{
   width: 400px;
 }
-
