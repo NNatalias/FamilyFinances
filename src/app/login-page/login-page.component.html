@@ -1,5 +1,8 @@
 <div class="container">
   <div class="title">Войти</div>
+  <div class="errorTitle" *ngIf="auth.error$ | async as error">
+    {{error}}
+  </div>
 <form class="loginForm" [formGroup]="loginForm" (ngSubmit)="submit()">
   <div>
     <mat-form-field>

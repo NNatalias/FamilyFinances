@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="title">Ваши совершенные покупки</div>
+  <div *ngIf="purchases.length;else loading">
+    <mat-form-field appearance="outline" style="padding-left: 1rem;">
+    <mat-label>Поиск по категории</mat-label>
+    <input  matInput type="text" [(ngModel)]="searchStr" placeholder="Найти покупку по категории" >
+  </mat-form-field>
+  <table>
+    <thead>
+    <tr>
+      <th>No</th>
+      <th>Категория</th>
+      <th>Магазин</th>
+      <th>Продукты</th>
+      <th>Дата</th>
+      <th>Цена</th>
+      <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let purchase of purchases | searchByCategory:searchStr; let idx = index">
+      <td>{{idx+1}}</td>
+      <td>{{purchase.category}}</td>
+      <td>{{purchase.nameOfShop}}</td>
+      <td>{{purchase.products}}</td>
+      <td>{{purchase.date |date: 'short'}}</td>
+      <td>{{purchase.sum}}</td>
+      <td>
+      <button mat-stroked-button (click)="removePurchase(purchase.id)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table></div>
+  <ng-template #loading>
+    <div class="title">Упс( А где же они?</div>
+  </ng-template>
+</div>

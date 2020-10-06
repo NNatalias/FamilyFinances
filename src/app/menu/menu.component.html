@@ -1,8 +1,8 @@
-<div>
+<div >
   <mat-grid-list cols="4" rowHeight="50px">
     <mat-grid-tile>Семейные Финансы</mat-grid-tile>
     <mat-grid-tile></mat-grid-tile>
     <mat-grid-tile></mat-grid-tile>
-    <mat-grid-tile><a href="#" (click)="logout($event)">Выход</a></mat-grid-tile>
+    <mat-grid-tile *ngIf="auth.isAuthenticated()"><a href="#" (click)="logout($event)">Выход</a></mat-grid-tile>
   </mat-grid-list>
 </div>

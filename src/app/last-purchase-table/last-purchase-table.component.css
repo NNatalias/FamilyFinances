@@ -1,0 +1,21 @@
+.container{
+  color: #3B3632;
+  background-color: #f4fcfa;
+  border-radius: 20px;
+  border: #3B3632 solid;
+  width: 800px;
+}
+.title{
+  font-size: 27px;
+  font-family: 'Tenor Sans', sans-serif;
+  padding: 1rem;
+}
+table{
+padding:0 1rem 1rem 1rem;
+}
+thead{
+  background-color: #404F43;
+  color: #f4fcfa;
+  font-size: 21px;
+  font-family: 'Tenor Sans', sans-serif;
+}

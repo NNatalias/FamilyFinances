@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule, Provider} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -21,6 +21,19 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegistrationPageComponent } from './registration-page/registration-page.component';
 import { AuthPageComponent } from './auth-page/auth-page.component';
+import {AuthInterceptor} from './services/auth.interceptor';
+import { LastPurchaseTableComponent } from './last-purchase-table/last-purchase-table.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {SearchPipe} from './pipes/search.pipe';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
+const INTERCEPTOR_PROVIDER: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  multi: true,
+  useClass: AuthInterceptor
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,27 +41,32 @@ import { AuthPageComponent } from './auth-page/auth-page.component';
     MenuComponent,
     LoginPageComponent,
     RegistrationPageComponent,
-    AuthPageComponent
+    AuthPageComponent,
+    LastPurchaseTableComponent,
+    SearchPipe
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatInputModule,
-        MatFormFieldModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatIconModule,
-        MatCheckboxModule,
-        MatRadioModule,
-        MatButtonModule,
-        MatSelectModule,
-        MatGridListModule,
-        MatCardModule,
-      MatSnackBarModule
-    ],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatGridListModule,
+    MatCardModule,
+    MatSnackBarModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatDatepickerModule
+  ],
+  providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

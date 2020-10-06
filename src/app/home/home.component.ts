@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RegistrationNewBuy} from '../Interfaces/registrationNewBuy';
+import {Purchase} from '../Interfaces/Purchase';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Category} from '../Interfaces/category';
 import {NewPurchaseService} from '../services/newPurchase.service';
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     if ( this.form.invalid){
       return;
     }
-    const registration: RegistrationNewBuy =
+    const registration: Purchase =
      {
        nameOfShop: this.form.value.nameShop,
        sum: this.form.value.sumItem,
@@ -47,10 +47,9 @@ export class HomeComponent implements OnInit {
       this.form.reset();
       this.openSnackBar('Новая запись успешно добавлена');
     }, error => {
+      this.form.reset();
       this.openSnackBar('Ошибка сервера!');
     } );
-
-    console.log(registration);
   }
 
   addNewCategory(): void{
@@ -68,7 +67,7 @@ export class HomeComponent implements OnInit {
 
   addProduct(): void{
     const control = new FormControl('', Validators.required);
-    (this.form.get('newProducts') as FormArray).push(control);
+    (this.form.controls.newProducts as FormArray).push(control);
   }
 }
 

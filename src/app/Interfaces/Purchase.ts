@@ -1,4 +1,5 @@
-export interface RegistrationNewBuy{
+export interface Purchase {
+  id?: string;
   category: string;
   date: Date;
   products?: [string];
