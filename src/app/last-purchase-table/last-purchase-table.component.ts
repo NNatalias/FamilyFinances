@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AllPurchaseService} from '../services/allPurchase.service';
-import {Purchase} from '../Interfaces/Purchase';
 import {Subscription} from 'rxjs';
 import {SnackBarService} from '../services/snackBar.service';
 
@@ -10,17 +9,15 @@ import {SnackBarService} from '../services/snackBar.service';
   styleUrls: ['./last-purchase-table.component.css'],
 })
 export class LastPurchaseTableComponent implements OnInit, OnDestroy {
-
-  purchases: Purchase[] = [];
   pSub: Subscription;
   dSub: Subscription;
   searchStr = '';
   searchDate = '';
-  constructor( private allPurchaseService: AllPurchaseService, private snackBarService: SnackBarService) { }
+  constructor( public allPurchaseService: AllPurchaseService, private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
     this.pSub = this.allPurchaseService.getAll().subscribe(purchases => {
-     this.purchases = purchases;
+      this.allPurchaseService.purchases = purchases.sort((d1, d2) => new Date(d2.date).getTime() - new Date(d1.date).getTime());
     });
   }
   ngOnDestroy(): void {
@@ -33,7 +30,7 @@ export class LastPurchaseTableComponent implements OnInit, OnDestroy {
 }
   removePurchase(id: string): void  {
 this.allPurchaseService.remove(id).subscribe(() => {
-  this.purchases = this.purchases.filter(purchase => purchase.id !== id);
+  this.allPurchaseService.purchases = this.allPurchaseService.purchases.filter(purchase => purchase.id !== id);
   this.snackBarService.openSnackBar('Запись о покупке успешно удалена!');
 });
   }
