@@ -8,6 +8,7 @@ import {AuthService} from './auth.service';
 
 @Injectable({providedIn: 'root'})
 export class AllPurchaseService{
+  purchases: Purchase[] = [];
   constructor(private http: HttpClient, private auth: AuthService) {
   }
   getAll(): Observable<Purchase[]>{

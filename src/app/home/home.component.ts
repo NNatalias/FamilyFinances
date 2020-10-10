@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
       this.form.reset();
       this.openSnackBar('Новая запись успешно добавлена');
       window.location.reload();
-      // this.allPurchaseService.getAll();
+      this.allPurchaseService.getAll();
     }, error => {
       this.form.reset();
       this.openSnackBar('Ошибка сервера!');

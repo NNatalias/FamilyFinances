@@ -12,18 +12,18 @@ import {AuthService} from '../services/auth.service';
 })
 export class LastPurchaseTableComponent implements OnInit, OnDestroy {
 
-  purchases: Purchase[] = [];
+
   pSub: Subscription;
   dSub: Subscription;
   searchStr = '';
   searchDate = '';
-  constructor(private allPurchaseService: AllPurchaseService,
+  constructor(public allPurchaseService: AllPurchaseService,
               private snackBar: MatSnackBar,
               ) { }
 
   ngOnInit(): void {
     this.pSub = this.allPurchaseService.getAll().subscribe(purchases => {
-     this.purchases = purchases;
+     this.allPurchaseService.purchases = purchases;
     });
   }
   ngOnDestroy(): void {
@@ -36,7 +36,7 @@ export class LastPurchaseTableComponent implements OnInit, OnDestroy {
 }
   removePurchase(id: string): void  {
 this.allPurchaseService.remove(id).subscribe(() => {
-  this.purchases = this.purchases.filter(purchase => purchase.id !== id);
+  this.allPurchaseService.purchases = this.allPurchaseService.purchases.filter(purchase => purchase.id !== id);
   this.openSnackBar('Запись о покупке успешно удалена!');
 });
   }
