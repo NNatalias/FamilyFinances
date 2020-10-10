@@ -4,6 +4,8 @@ import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Category} from '../Interfaces/category';
 import {NewPurchaseService} from '../services/newPurchase.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {AuthService} from '../services/auth.service';
+import {AllPurchaseService} from '../services/allPurchase.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +14,9 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class HomeComponent implements OnInit {
   constructor( private newPurchaseRegistrationService: NewPurchaseService,
-               private snackBar: MatSnackBar) { }
+               private snackBar: MatSnackBar,
+               private auth: AuthService,
+               private allPurchaseService: AllPurchaseService) { }
 
   form: FormGroup;
   categories: Category[] = [
@@ -37,6 +41,7 @@ export class HomeComponent implements OnInit {
     }
     const registration: Purchase =
      {
+       owner: this.auth.userId,
        nameOfShop: this.form.value.nameShop,
        sum: this.form.value.sumItem,
        category: this.form.value.currentCategory.value,
@@ -46,6 +51,8 @@ export class HomeComponent implements OnInit {
     this.newPurchaseRegistrationService.create(registration).subscribe(() => {
       this.form.reset();
       this.openSnackBar('Новая запись успешно добавлена');
+      window.location.reload();
+      // this.allPurchaseService.getAll();
     }, error => {
       this.form.reset();
       this.openSnackBar('Ошибка сервера!');

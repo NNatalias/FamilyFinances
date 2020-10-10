@@ -28,17 +28,17 @@ export class LoginPageComponent implements OnInit {
   }
 
   submit(): void {
-   if (this.loginForm.invalid){
-     return;   }
-   this.submitted = true;
-   const userLogin: UserLogin = {
+    if (this.loginForm.invalid){
+      return;   }
+    this.submitted = true;
+    const userLogin: UserLogin = {
       email : this.loginForm.value.email,
       password : this.loginForm.value.password,
     };
-   this.auth.login(userLogin).subscribe(() => {
-     this.loginForm.reset();
-     this.router.navigate(['/home']);
-   });
-   this.submitted = false;
+    this.auth.login(userLogin).subscribe(() => {
+      this.loginForm.reset();
+      this.router.navigate(['/home']);
+    });
+    this.submitted = false;
   }
 }

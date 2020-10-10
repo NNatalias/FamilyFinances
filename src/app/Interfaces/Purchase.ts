@@ -1,4 +1,5 @@
 export interface Purchase {
+  owner: string;
   id?: string;
   category: string;
   date: Date;

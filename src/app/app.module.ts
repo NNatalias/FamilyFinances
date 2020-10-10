@@ -27,6 +27,9 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {SearchPipe} from './pipes/search.pipe';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
+import {SearchByDatePipe} from './pipes/searchByDate.pipe';
+
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -43,7 +46,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     RegistrationPageComponent,
     AuthPageComponent,
     LastPurchaseTableComponent,
-    SearchPipe
+    SearchPipe,
+    SearchByDatePipe
   ],
   imports: [
     BrowserModule,
@@ -64,9 +68,12 @@ const INTERCEPTOR_PROVIDER: Provider = {
     MatSnackBarModule,
     MatTableModule,
     MatPaginatorModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  providers: [INTERCEPTOR_PROVIDER],
+  providers: [INTERCEPTOR_PROVIDER,
+    {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

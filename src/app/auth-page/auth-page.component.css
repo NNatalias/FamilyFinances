@@ -1,1 +1,4 @@
-
+.vrap{
+  display: flex;
+  justify-content: center;
+}

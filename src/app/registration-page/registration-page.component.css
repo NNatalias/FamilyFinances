@@ -3,7 +3,15 @@
   background-color: #f4fcfa;
   border-radius: 20px;
   border: #3B3632 solid;
-  width: 500px;
+  width: 400px;
+  margin: 2rem;
+}
+.errorTitle{
+  background-color: #af4448;
+  color: #f4fcfa;
+  padding: 2%;
+  font-size: 20px;
+  margin: 1% 0 2% 0;
 }
 .title{
   font-size: 27px;
@@ -20,5 +28,5 @@
   margin-top: 2% ;
 }
 mat-form-field{
-  width: 400px;
+  width: 330px;
 }

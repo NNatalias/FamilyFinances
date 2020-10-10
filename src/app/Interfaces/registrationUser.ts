@@ -1,6 +1,11 @@
 export interface RegistrationUser {
-  firstName: string;
-  lastName?: string;
   email: string;
   password: string;
+  returnSecureToken?: boolean;
+}
+
+export interface UserData {
+  firstName: string;
+  lastName: string;
+  uniqueUserId: string;
 }

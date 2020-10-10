@@ -3,7 +3,8 @@
   background-color: #f4fcfa;
   border-radius: 20px;
   border: #3B3632 solid;
-  width: 500px;
+  width: 400px;
+  margin: 2rem;
 }
 .title{
   font-size: 27px;
@@ -27,6 +28,6 @@
   margin-top: 2% ;
 }
 mat-form-field{
-  width: 400px;
+  width: 330px;
 }
 

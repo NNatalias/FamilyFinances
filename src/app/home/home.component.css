@@ -1,3 +1,7 @@
+.vrap{
+  display: flex;
+  justify-content: center;
+}
 .container{
   color: #3B3632;
   background-color: #f4fcfa;

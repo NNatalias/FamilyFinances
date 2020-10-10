@@ -3,11 +3,12 @@ import {AllPurchaseService} from '../services/allPurchase.service';
 import {Purchase} from '../Interfaces/Purchase';
 import {Subscription} from 'rxjs';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-last-purchase-table',
   templateUrl: './last-purchase-table.component.html',
-  styleUrls: ['./last-purchase-table.component.css']
+  styleUrls: ['./last-purchase-table.component.css'],
 })
 export class LastPurchaseTableComponent implements OnInit, OnDestroy {
 
@@ -15,8 +16,10 @@ export class LastPurchaseTableComponent implements OnInit, OnDestroy {
   pSub: Subscription;
   dSub: Subscription;
   searchStr = '';
+  searchDate = '';
   constructor(private allPurchaseService: AllPurchaseService,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,
+              ) { }
 
   ngOnInit(): void {
     this.pSub = this.allPurchaseService.getAll().subscribe(purchases => {

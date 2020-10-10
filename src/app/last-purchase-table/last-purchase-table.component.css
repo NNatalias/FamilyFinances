@@ -3,19 +3,30 @@
   background-color: #f4fcfa;
   border-radius: 20px;
   border: #3B3632 solid;
-  width: 800px;
+  width: 700px;
+  margin: 2rem;
 }
 .title{
   font-size: 27px;
   font-family: 'Tenor Sans', sans-serif;
-  padding: 1rem;
+  padding: 2rem 2rem 0 2rem;
+}
+.titleError{
+  font-size: 27px;
+  font-family: 'Tenor Sans', sans-serif;
+  margin: 3rem;
 }
 table{
-padding:0 1rem 1rem 1rem;
+  padding:0 2rem 2rem 2rem;
 }
-thead{
+th{
   background-color: #404F43;
   color: #f4fcfa;
   font-size: 21px;
+  height: 37px;
   font-family: 'Tenor Sans', sans-serif;
+}
+mat-form-field{
+ width: 200px;
+  margin-left: 2rem;
 }

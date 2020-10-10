@@ -1,37 +1,51 @@
 <div class="container">
   <div class="title">Ваши совершенные покупки</div>
   <div *ngIf="purchases.length;else loading">
-    <mat-form-field appearance="outline" style="padding-left: 1rem;">
+    <mat-form-field appearance="standard" >
     <mat-label>Поиск по категории</mat-label>
-    <input  matInput type="text" [(ngModel)]="searchStr" placeholder="Найти покупку по категории" >
+    <input  matInput type="text" [(ngModel)]="searchStr" placeholder="Найти покупку..." >
+      <mat-icon matSuffix>search7</mat-icon>
   </mat-form-field>
+    <button mat-button *ngIf="searchStr" matSuffix mat-icon-button aria-label="Clear" (click)="searchStr=''">
+      <mat-icon>close</mat-icon>
+    </button>
+    <span>
+    <mat-form-field appearance="standard" style="padding-left: 4rem;">
+      <mat-label>Поиск по дате</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="searchDate" placeholder="Найти покупку...">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <button mat-button *ngIf="searchDate" matSuffix mat-icon-button aria-label="Clear" (click)="searchDate=''">
+      <mat-icon>close</mat-icon>
+    </button></span>
   <table>
     <thead>
     <tr>
       <th>No</th>
+      <th>Дата</th>
       <th>Категория</th>
       <th>Магазин</th>
       <th>Продукты</th>
-      <th>Дата</th>
       <th>Цена</th>
       <th>Действие</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let purchase of purchases | searchByCategory:searchStr; let idx = index">
+    <tr *ngFor="let purchase of purchases | searchByCategory:searchStr | searchByDate:searchDate; let idx = index">
       <td>{{idx+1}}</td>
+      <td>{{purchase.date |date:'M/d/yy, HH:mm '}}</td>
       <td>{{purchase.category}}</td>
       <td>{{purchase.nameOfShop}}</td>
       <td>{{purchase.products}}</td>
-      <td>{{purchase.date |date: 'short'}}</td>
       <td>{{purchase.sum}}</td>
       <td>
-      <button mat-stroked-button (click)="removePurchase(purchase.id)">Delete</button>
+      <button mat-button mat-icon-button (click)="removePurchase(purchase.id)"><mat-icon>delete_outline</mat-icon></button>
       </td>
     </tr>
     </tbody>
   </table></div>
   <ng-template #loading>
-    <div class="title">Упс( А где же они?</div>
+    <div class="titleError">Упс( А где же они?</div>
   </ng-template>
 </div>

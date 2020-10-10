@@ -4,10 +4,12 @@ import {FbAuthResponse, UserLogin} from '../Interfaces/userLogin';
 import {Observable, Subject, throwError} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {environment} from '../../environments/environment';
+import {RegistrationUser} from '../Interfaces/registrationUser';
 
 @Injectable()
 export class AuthService {
   public error$: Subject<string> = new Subject<string>();
+  public errorReg$: Subject<string> = new Subject<string>();
   constructor(private http: HttpClient) {
   }
   get token(): string{
@@ -16,9 +18,19 @@ export class AuthService {
       this.logOut();
       return null;
     }
-
     return localStorage.getItem('FB-token');
   }
+
+  get userId(): string{
+    const userId = localStorage.getItem('FB-idUser');
+    if (!userId){
+      this.logOut();
+      return null;
+    }else {
+      return localStorage.getItem('FB-idUser');
+    }
+  }
+
  login(userLogin: UserLogin): Observable<any>{
     userLogin.returnSecureToken = true;
     return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, userLogin)
@@ -33,24 +45,37 @@ export class AuthService {
   isAuthenticated(): boolean{
    return !!this.token;
   }
-  private setToken(response: FbAuthResponse | null): void{
+  registrationNewUser(registrationUser: RegistrationUser): Observable<any>{
+    registrationUser.returnSecureToken = true;
+    return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.apiKey}`, registrationUser)
+      .pipe(
+      tap(this.setToken),
+      catchError(this.handleError.bind(this))
+    );
+  }
+ private setToken(response: FbAuthResponse | null): void{
     if (response){
       const expDate = new Date(new Date().getTime() + +response.expiresIn * 1000);
       localStorage.setItem('FB-token', response.idToken);
+      localStorage.setItem('FB-idUser', response.localId);
       localStorage.setItem('FB-token-exp', expDate.toString());
     }else { localStorage.clear(); }
   }
+
   private handleError(error: HttpErrorResponse): Observable<any>{
     const {message} = error.error.error;
     switch (message){
-      case 'INVALID_EMAIL':
-      this.error$.next('лол');
-      break;
       case 'INVALID_PASSWORD':
         this.error$.next('Неверный пароль');
         break;
-      case 'EMAIL_NOT_FOUND':
+        case 'EMAIL_NOT_FOUND':
         this.error$.next('Такого пользователя нет');
+        break;
+      case 'EMAIL_EXISTS':
+        this.errorReg$.next('Пользователь с таким Email уже существует');
+        break;
+      case 'TOO_MANY_ATTEMPTS_TRY_LATER':
+        this.errorReg$.next('Мы заметили подозрительную активность, попробуйте позже');
         break;
     }
     return throwError(error);
