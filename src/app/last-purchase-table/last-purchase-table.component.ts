@@ -2,8 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AllPurchaseService} from '../services/allPurchase.service';
 import {Purchase} from '../Interfaces/Purchase';
 import {Subscription} from 'rxjs';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {AuthService} from '../services/auth.service';
+import {SnackBarService} from '../services/snackBar.service';
 
 @Component({
   selector: 'app-last-purchase-table',
@@ -17,9 +16,7 @@ export class LastPurchaseTableComponent implements OnInit, OnDestroy {
   dSub: Subscription;
   searchStr = '';
   searchDate = '';
-  constructor(private allPurchaseService: AllPurchaseService,
-              private snackBar: MatSnackBar,
-              ) { }
+  constructor( private allPurchaseService: AllPurchaseService, private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
     this.pSub = this.allPurchaseService.getAll().subscribe(purchases => {
@@ -37,12 +34,7 @@ export class LastPurchaseTableComponent implements OnInit, OnDestroy {
   removePurchase(id: string): void  {
 this.allPurchaseService.remove(id).subscribe(() => {
   this.purchases = this.purchases.filter(purchase => purchase.id !== id);
-  this.openSnackBar('Запись о покупке успешно удалена!');
+  this.snackBarService.openSnackBar('Запись о покупке успешно удалена!');
 });
-  }
-  openSnackBar(message: string): void{
-    this.snackBar.open(message, '', {
-      duration: 2000,
-    });
   }
 }

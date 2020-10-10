@@ -3,9 +3,8 @@ import {Purchase} from '../Interfaces/Purchase';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Category} from '../Interfaces/category';
 import {NewPurchaseService} from '../services/newPurchase.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {AuthService} from '../services/auth.service';
-import {AllPurchaseService} from '../services/allPurchase.service';
+import {SnackBarService} from '../services/snackBar.service';
 
 @Component({
   selector: 'app-home',
@@ -14,9 +13,8 @@ import {AllPurchaseService} from '../services/allPurchase.service';
 })
 export class HomeComponent implements OnInit {
   constructor( private newPurchaseRegistrationService: NewPurchaseService,
-               private snackBar: MatSnackBar,
-               private auth: AuthService,
-               private allPurchaseService: AllPurchaseService) { }
+               private snackBarService: SnackBarService,
+               private auth: AuthService) { }
 
   form: FormGroup;
   categories: Category[] = [
@@ -50,28 +48,19 @@ export class HomeComponent implements OnInit {
      };
     this.newPurchaseRegistrationService.create(registration).subscribe(() => {
       this.form.reset();
-      this.openSnackBar('Новая запись успешно добавлена');
+      this.snackBarService.openSnackBar('Новая запись успешно добавлена');
       window.location.reload();
-      // this.allPurchaseService.getAll();
     }, error => {
       this.form.reset();
-      this.openSnackBar('Ошибка сервера!');
+      this.snackBarService.openSnackBar('Ошибка сервера!');
     } );
   }
-
   addNewCategory(): void{
     const newCategory = this.form.get('newCategory').value;
     this.categories.push({value: newCategory});
     this.form.get('newCategory').reset();
-    this.openSnackBar('Новая категория успешно добавлена');
+    this.snackBarService.openSnackBar('Новая категория успешно добавлена');
 }
-
-  openSnackBar(message: string): void{
-    this.snackBar.open(message, '', {
-      duration: 2000,
-    });
-  }
-
   addProduct(): void{
     const control = new FormControl('', Validators.required);
     (this.form.controls.newProducts as FormArray).push(control);

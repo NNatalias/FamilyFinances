@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
 import {RegistrationUser} from '../Interfaces/registrationUser';
+import {SnackBarService} from '../services/snackBar.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ import {RegistrationUser} from '../Interfaces/registrationUser';
 })
 export class RegistrationPageComponent implements OnInit {
 
-  constructor(public auth: AuthService, private router: Router) { }
+  constructor(public auth: AuthService, private router: Router, private snackBarService: SnackBarService) { }
   registrationForm: FormGroup;
   hide = true;
   ngOnInit(): void {
@@ -38,6 +39,7 @@ export class RegistrationPageComponent implements OnInit {
     this.auth.registrationNewUser(registrationUser).subscribe(() => {
       this.registrationForm.reset();
       this.router.navigate(['/home']);
+      this.snackBarService.openSnackBar('Поздравляем Вы зарегистрировались !');
     });
   }
 }
