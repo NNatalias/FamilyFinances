@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="title">Ваш профиль</div>
+  <div class="errorTitle" *ngIf="authS.errorDel$ | async as error">
+    {{error}}
+  </div>
+  <form class="dataUserForm" [formGroup]="dataUserForm" #f="ngForm" (ngSubmit)="submit()">
+        <div>
+          <mat-form-field>
+            <mat-label>Имя</mat-label>
+            <input matInput id="firstName" formControlName="firstName" type="text" placeholder="Как Вас зовут?">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error>Это поле должно быть заполнено</mat-error>
+          </mat-form-field>
+        </div>
+    <button mat-flat-button class="btn" [disabled]="dataUserForm.invalid" type="submit">Добавить</button>
+    <button mat-flat-button class="btn" (click)="delete($event)" type="submit">Удалить аккаунт</button>
+  </form>
+</div>

@@ -29,6 +29,7 @@ import {SearchPipe} from './pipes/search.pipe';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import {SearchByDatePipe} from './pipes/searchByDate.pipe';
+import { AccPageComponent } from './acc-page/acc-page.component';
 
 
 const INTERCEPTOR_PROVIDER: Provider = {
@@ -47,7 +48,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     AuthPageComponent,
     LastPurchaseTableComponent,
     SearchPipe,
-    SearchByDatePipe
+    SearchByDatePipe,
+    AccPageComponent
   ],
   imports: [
     BrowserModule,

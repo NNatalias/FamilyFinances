@@ -4,21 +4,6 @@
     {{error}}
   </div>
   <form class="registrationForm" [formGroup]="registrationForm" (ngSubmit)="submit()">
-<!--    <div>-->
-<!--      <mat-form-field>-->
-<!--        <mat-label>Имя</mat-label>-->
-<!--        <input matInput id="firstName" formControlName="firstName" type="text" placeholder="Как Вас зовут?">-->
-<!--        <mat-icon matSuffix>person</mat-icon>-->
-<!--        <mat-error>Это поле должно быть заполнено</mat-error>-->
-<!--      </mat-form-field>-->
-<!--    </div>-->
-<!--    <div>-->
-<!--      <mat-form-field>-->
-<!--        <mat-label>Фамилия</mat-label>-->
-<!--        <input matInput id="lastName" formControlName="lastName" type="text" placeholder="Какая у Вас фамилия?">-->
-<!--        <mat-icon matSuffix>person_outline</mat-icon>-->
-<!--      </mat-form-field>-->
-<!--    </div>-->
     <div>
       <mat-form-field>
         <mat-label>E-mail</mat-label>
@@ -38,6 +23,6 @@
         <mat-hint>Пароль должен быть не менее 6 символов</mat-hint>
       </mat-form-field>
     </div>
-    <button mat-raised-button class="btn" [disabled]="registrationForm.invalid" type="submit">Зарегистрироваться</button>
+    <button mat-raised-button class="btn" [disabled]="registrationForm.invalid || submitted" type="submit">Зарегистрироваться</button>
   </form>
 </div>

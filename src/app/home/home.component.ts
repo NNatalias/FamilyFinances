@@ -6,6 +6,7 @@ import {NewPurchaseService} from '../services/newPurchase.service';
 import {AuthService} from '../services/auth.service';
 import {SnackBarService} from '../services/snackBar.service';
 import {AllPurchaseService} from '../services/allPurchase.service';
+import {UserData} from '../Interfaces/registrationUser';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,8 @@ import {AllPurchaseService} from '../services/allPurchase.service';
 })
 export class HomeComponent implements OnInit {
   @ViewChild('f') MyNgForm;
+  userData: UserData;
+
   constructor(private newPurchaseRegistrationService: NewPurchaseService,
               private allPurchaseService: AllPurchaseService,
               private snackBarService: SnackBarService,
@@ -28,6 +31,14 @@ export class HomeComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.auth.getUserData().subscribe(
+      (response: {kind: string, users: Array<UserData>}) => {
+        this.userData = response.users[0];
+      },
+      error => {
+       console.log(error);
+      }
+    );
     this.form = new FormGroup({
       nameShop: new FormControl(null, Validators.max(20)),
       sumItem: new FormControl(null, Validators.required),
@@ -58,7 +69,6 @@ export class HomeComponent implements OnInit {
       });
     }, error => {
       console.log(error);
-      this.form.reset();
       this.snackBarService.openSnackBar('Ошибка сервера!');
     });
   }

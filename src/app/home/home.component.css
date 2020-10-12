@@ -1,3 +1,9 @@
+.bigTittle{
+  font-size: 36px;
+  font-family: 'Tenor Sans', sans-serif;
+  padding: 1rem 0 0 3rem;
+}
+
 .vrap{
   display: flex;
   justify-content: center;

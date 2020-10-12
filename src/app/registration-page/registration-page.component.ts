@@ -12,14 +12,13 @@ import {SnackBarService} from '../services/snackBar.service';
   styleUrls: ['./registration-page.component.css']
 })
 export class RegistrationPageComponent implements OnInit {
-
-  constructor(public auth: AuthService, private router: Router, private snackBarService: SnackBarService) { }
+  submitted = false;
   registrationForm: FormGroup;
   hide = true;
+  constructor(public auth: AuthService, private router: Router, private snackBarService: SnackBarService) { }
+
   ngOnInit(): void {
     this.registrationForm = new FormGroup({
-      // firstName: new FormControl(null, Validators.required),
-      // lastName: new FormControl(null, Validators.max(20)),
       newEmail: new FormControl(null, [
         Validators.required,
         Validators.email,
@@ -32,6 +31,7 @@ export class RegistrationPageComponent implements OnInit {
   submit(): void {
     if (this.registrationForm.invalid){
       return;   }
+    this.submitted = true;
     const registrationUser: RegistrationUser = {
       email : this.registrationForm.value.newEmail,
       password : this.registrationForm.value.newPassword,
@@ -41,5 +41,6 @@ export class RegistrationPageComponent implements OnInit {
       this.router.navigate(['/home']);
       this.snackBarService.openSnackBar('Поздравляем Вы зарегистрировались !');
     });
+    this.submitted = false;
   }
 }

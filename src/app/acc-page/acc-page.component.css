@@ -1,0 +1,33 @@
+.container{
+  color: #3B3632;
+  background-color: #f4fcfa;
+  border-radius: 20px;
+  border: #3B3632 solid;
+  width: 400px;
+  margin: 2rem;
+}
+.title{
+  font-size: 27px;
+  font-family: 'Tenor Sans', sans-serif;
+  padding: 3%;
+}
+.errorTitle{
+  background-color: #af4448;
+  color: #f4fcfa;
+  padding: 2%;
+  font-size: 20px;
+  margin: 1% 0 2% 0;
+}
+.btn{
+  background-color: #3B3632;
+  color: white;
+  margin-top: 2% ;
+  margin-right: 2rem;
+}
+mat-form-field{
+  width: 70%;
+}
+.dataUserForm{
+  padding: 0 0 1rem 3rem ;
+  width: 100%;
+}

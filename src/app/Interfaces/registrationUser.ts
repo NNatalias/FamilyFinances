@@ -5,7 +5,8 @@ export interface RegistrationUser {
 }
 
 export interface UserData {
-  firstName: string;
-  lastName: string;
-  uniqueUserId: string;
+  displayName: string;
+  photoUrl?: string;
+  idToken: string;
+  returnSecureToken?: boolean;
 }
